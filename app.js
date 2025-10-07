@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js"); 
 const path=require("path");
 const methodOverride=require("method-override");
-const { redirect } = require("react-router-dom");
+const ejsMate=require("ejs-mate");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/the_wanderland";
 
@@ -24,6 +24,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.engine('ejs', ejsMate);
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/", (req, res) => {
   res.send("Hello! welcome to wander land");
@@ -42,7 +44,7 @@ app.get("/listings/new", (req,res)=>{
 
 //showing lists
 app.get("/listings/:id", async (req,res)=>{
-  let {id}=req.params;
+ const  {id}=req.params;
   const listing=await Listing.findById(id);
   res.render("listings/show.ejs", {listing});
 });
