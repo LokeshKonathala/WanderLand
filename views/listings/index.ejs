@@ -1,15 +1,82 @@
 <% layout("/layouts/boilerplate") %>
-<body>
-  <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+<style>
+  #filters {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .filter {
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+  }
+  .filter:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+  .filter p{
+    font-size: 0.8rem;
+  }
+  
+</style>
+
+<div id="filters">
+  <div class="filter">
+    <i class="fa-solid fa-fire"></i>
+    <p>Trending</p>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-bed"></i>
+    <p>Rooms</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-mountain-city"></i>
+    <p>iconic Cities</p>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-mountain"></i>
+    <p>Mountains</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-chess-rook"></i>
+    <p>Castles</p>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-person-swimming"></i>
+    <p>Amazing pools</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-campground"></i>
+    <p>Camping</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-cow"></i>
+    <p>Farms</p>
+  </div>
+
+  <div class="filter">
+    <i class="fa-regular fa-snowflake"></i>
+    <p>Arctic</p>
+  </div>
+</div>
+
+  <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3">
     <% for(let listing of allListings){ %>
       <div class="col mb-4">
         <a href="/listings/<%= listing._id %>" class="listing-links" style="text-decoration: none; color: inherit;">
-          <div class="card">
+          <div class="card col listing-card">
             <img src="<%= listing.image.url%>" class="card-img-top" alt="<%= listing.title %>" style="height: 15rem">
             <div class="card-body">
               <p class="card-text">
                 <b><%= listing.title %></b><br>
-                ₹<%= listing.price.toLocaleString("en-IN") %> / night
+                <% if (listing.price != null) { %>
+                  ₹<%= listing.price.toLocaleString("en-IN") %> / night
+                <% } else { %>
+                  Price not available
+                <% } %>                
               </p>
             </div>
           </div>
@@ -17,4 +84,4 @@
       </div>
     <% } %>
   </div>
-</body>
+

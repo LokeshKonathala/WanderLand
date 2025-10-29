@@ -2,7 +2,7 @@
 <div>
     <div class="col-8 offset-2">
     <h3>Edit your listing</h3>
-    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT">
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT"  class="needs-validation" enctype="multipart/form-data">
         <div >
             <label for="title">Title</label>
             <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control">
@@ -14,12 +14,16 @@
 
         </div>
         <br> 
+        <div class="mb-3">
+            Orginal Image <br/>
+           <img src="<%=originalImageUrl %>"/>
+        </div>
         <div >
-            <label for="image">Image URL/Link</label>
-            <input name="listing[image]" value="<%=listing.image%>" type="text" class="form-control">
+            <label for="image" class="form-label">Upload New Image</label>
+            <input name="listing[image]" type="file" class="form-control">
         </div>  
         <br>
-        <div>
+        <div class="row">
             <label for="price">Price</label>
             <input name="listing[price]" value="<%=listing.price%>" type="number" class="form-control">
         </div>
