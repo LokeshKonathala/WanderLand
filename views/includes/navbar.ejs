@@ -42,9 +42,31 @@
           <a class="nav-link " href="/signup"><b>Signup</b></a>
           <a class="nav-link" href="/login"><b>Login</b></a>
           <% } %> <% if(currUser) {%>
-          <a class="nav-link" href="logout"><b>Logout</b></a>
+          <a class="nav-link" href="#" id="logoutLink"><b>Logout</b></a>
           <% } %>
         </div>
       </div>
     </div>
   </nav>
+
+  <script>
+    // Logout via POST request (safer than GET)
+    document.addEventListener("DOMContentLoaded", () => {
+      const logoutLink = document.getElementById("logoutLink");
+      if (logoutLink) {
+        logoutLink.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            const res = await fetch("/logout", { method: "POST" });
+            if (res.ok) {
+              window.location.href = "/listings"; // redirect after logout
+            } else {
+              console.error("Logout failed");
+            }
+          } catch (err) {
+            console.error("Error during logout:", err);
+          }
+        });
+      }
+    });
+  </script>
