@@ -6,7 +6,7 @@ Built using the **Node.js + Express + MongoDB + EJS** stack, WanderLand provides
 ---
 
 ## 🚀 Live Demo  
-👉 [Deployed on Render](#) *(Add your Render link once deployed)*
+👉 [Visit WanderLand](https://wanderland-1-fxq6.onrender.com/listings)
 
 ---
 
